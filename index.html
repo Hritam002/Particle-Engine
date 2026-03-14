@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interactive Supernova (Pure JS)</title>
+  <style>
+    body { margin: 0; overflow: hidden; background: black; }
+    canvas { cursor: grab; }
+    canvas:active { cursor: grabbing; }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/examples/jsm/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+
+<script type="module">
+  import { SupernovaEngine } from "./engine/SupernovaEngine.js";
+  import { Renderer3D } from "./render/Renderer3D.js";
+
+  const engine = new SupernovaEngine(20000);
+  const renderer = new Renderer3D(engine);
+
+  function animate() {
+    engine.update();
+    renderer.render();
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+
+</body>
+</html>
